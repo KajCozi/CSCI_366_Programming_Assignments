@@ -27,7 +27,7 @@
 #define SHOT_FILE_PROCESSED 0
 #define NO_SHOT_FILE 1
 
-#define SHIPS "CBRSD" //Carrier, Battleship, cRuiser, Submarine, and Destroyer
+#define SHIPS "CBRSD" //Carrier, Battleship, Ruiser, Submarine, and Destroyer
 
 using namespace std;
 
