@@ -36,22 +36,22 @@
  */
 #include <dtl.hpp> // a library for diffing strings
 long get_diff_dist(string file1, string file2){
-   // load the file contents
-   ifstream ifstr1(file1);
-   string file1_S((std::istreambuf_iterator<char>(ifstr1)),
-                  std::istreambuf_iterator<char>());
-   ifstr1.close();
-   ifstream ifstr2(file2);
-   string file2_S((std::istreambuf_iterator<char>(ifstr2)),
-                  std::istreambuf_iterator<char>());
-   ifstr2.close();
+    // load the file contents
+    ifstream ifstr1(file1);
+    string file1_S((std::istreambuf_iterator<char>(ifstr1)),
+                   std::istreambuf_iterator<char>());
+    ifstr1.close();
+    ifstream ifstr2(file2);
+    string file2_S((std::istreambuf_iterator<char>(ifstr2)),
+                   std::istreambuf_iterator<char>());
+    ifstr2.close();
 
-   // compute the distance between correct and constructed boards
-   dtl::Diff<char, string> d(file1_S, file2_S);
-   d.onOnlyEditDistance();
-   d.compose();
+    // compute the distance between correct and constructed boards
+    dtl::Diff<char, string> d(file1_S, file2_S);
+    d.onOnlyEditDistance();
+    d.compose();
 
-   return d.getEditDistance();
+    return d.getEditDistance();
 }
 
 
@@ -223,8 +223,8 @@ protected:
 
     void set_up_result(int result){
         string result_str = "{\n"
-                         "    \"result\": "+to_string(result)+"\n"
-                         "}";
+                            "    \"result\": "+to_string(result)+"\n"
+                                                                 "}";
         ofstream result_file("player_1.result.json");
         result_file << result_str;
         result_file.close();
@@ -240,12 +240,12 @@ protected:
 };
 
 TEST_F(ClientResultAvailable, NoResultFile){
-   ASSERT_FALSE(client.result_available());
+    ASSERT_FALSE(client.result_available());
 }
 
 TEST_F(ClientResultAvailable, GoodFile){
-   set_up_result(HIT);
-   ASSERT_TRUE(client.result_available());
+    set_up_result(HIT);
+    ASSERT_TRUE(client.result_available());
 }
 
 
@@ -255,8 +255,8 @@ protected:
 
     void set_up_result(int result){
         string result_str = "{\n"
-                         "    \"result\": "+to_string(result)+"\n"
-                         "}";
+                            "    \"result\": "+to_string(result)+"\n"
+                                                                 "}";
         ofstream result_file("player_1.result.json");
         result_file << result_str;
         result_file.close();
@@ -293,7 +293,7 @@ TEST_F(ClientGetResult, Catch_Bad_Result){
 
 TEST_F(ClientGetResult, Cleanup){
     set_up_result(HIT);
-   client.get_result();
+    client.get_result();
     ifstream f("player_1.result.json");
     ASSERT_FALSE(f.good());
 }
@@ -322,6 +322,3 @@ TEST_F(ClientUpdateActionBoard, Record_Miss){
 
     ASSERT_EQ(0, get_diff_dist("player_1.action_board.json", "correct_miss_action_board.json"));
 }
-
-
-
