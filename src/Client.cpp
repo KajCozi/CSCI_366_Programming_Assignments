@@ -142,7 +142,6 @@ int Client::get_result() {
 }
 
 
-
 void Client::update_action_board(int result, unsigned int x, unsigned int y) {
     vector<vector<int>> action;
 
